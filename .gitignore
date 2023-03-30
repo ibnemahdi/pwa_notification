@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /vscode
-/dist
+#/dist
 /.pnp
 .pnp.js
 package-lock.json

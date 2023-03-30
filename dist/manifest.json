@@ -1,0 +1,27 @@
+{
+	"name":"Push Notification POC",
+	"short_name":"PUSH POC",
+	"start_url":".",
+	"display":"standalone",
+	"background_color":"#5900b3",
+	"theme_color":"black",
+	"scope": ".",
+	"description":"Web Push PWA Demo.",
+	"icons":[
+        {
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+          },
+        {
+            "src":"images/icon192_192.png",		
+            "sizes":"192x192",
+            "type":"image/png"
+        },
+        {
+            "src":"images/icon512_512.png",
+            "sizes":"512x512",
+            "type":"image/png"
+        }
+    ]
+}
