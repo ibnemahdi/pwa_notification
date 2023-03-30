@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import {getMessaging,getToken} from 'firebase/messaging'
+import {getMessaging,getToken, onMessage} from 'firebase/messaging'
 
 const firebaseApp = initializeApp(
     {
@@ -18,12 +18,12 @@ const messaging = getMessaging(firebaseApp);
 
 
 
-/*
-onMessage(function(payload){
-    alert('received')
-    console.log(payload);
-});
-*/
+
+onMessage(messaging, (payload) => {
+    alert('Message received. ', payload);
+    // ...
+  });
+
 
 window.addEventListener('load', () => {
     registerSW();

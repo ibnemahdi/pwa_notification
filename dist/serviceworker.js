@@ -32,7 +32,7 @@ self.addEventListener('notificationclick', (event) => {
 
 self.addEventListener('push', async function(event) {
     const data = event.data.json();
-    console.log(data);
+    //console.log(data);
     event.waitUntil(
         
         self.registration.showNotification(data.notification.title, 
@@ -41,7 +41,6 @@ self.addEventListener('push', async function(event) {
           icon:data.notification.icon,
           image:data.notification.image,
           badge:'favicon.ico',
-          //ations:'actions'
           actions: [
             {
               action: 'coffee-action',
