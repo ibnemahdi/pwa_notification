@@ -17,7 +17,12 @@ const firebaseApp = initializeApp(
 const messaging = getMessaging(firebaseApp);
 
 
-
+const msg2 = getMessaging();
+console.log('msg2 implemented')
+onMessage(msg2, (payload) => {
+  console.log('Message received. ', payload);
+  // ...
+});
 
 onMessage(messaging, (payload) => {
     console.log('Received');
