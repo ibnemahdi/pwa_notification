@@ -20,12 +20,14 @@ const messaging = getMessaging(firebaseApp);
 
 
 onMessage(messaging, (payload) => {
-    alert('Message received. ', payload);
+    console.log('Received');
+    //alert('Message received. ', payload);
     // ...
   });
 
 
 window.addEventListener('load', () => {
+    console.log("Version 4");
     registerSW();
   });
 
