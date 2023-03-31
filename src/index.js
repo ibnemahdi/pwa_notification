@@ -21,7 +21,7 @@ const messaging = getMessaging();
 onMessage(messaging, (payload) => {
     
     console.log('Received',payload);
-    //alert('Message received. ', payload);
+    alert('Message received. ', payload);
     // ...
   });
 
