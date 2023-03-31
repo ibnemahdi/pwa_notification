@@ -1,6 +1,8 @@
 import {initializeApp} from 'firebase/app';
 import {getMessaging,getToken, onMessage} from 'firebase/messaging'
 
+
+
 const firebaseApp = initializeApp(
     {
         apiKey: "AIzaSyD_KnWAbiVpJ5FMfQJcrJsNK90SmIitPNA",
@@ -14,25 +16,20 @@ const firebaseApp = initializeApp(
 );
 
 
-const messaging = getMessaging(firebaseApp);
-
-
-const msg2 = getMessaging();
-console.log('msg2 implemented')
-onMessage(msg2, (payload) => {
-  console.log('Message received. ', payload);
-  // ...
-});
+const messaging = getMessaging();
 
 onMessage(messaging, (payload) => {
-    console.log('Received');
+    
+    console.log('Received',payload);
     //alert('Message received. ', payload);
     // ...
   });
 
 
+
+
 window.addEventListener('load', () => {
-    console.log("Version 4");
+    console.log("Version 5");
     registerSW();
   });
 
