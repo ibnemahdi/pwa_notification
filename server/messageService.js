@@ -61,7 +61,7 @@ function getAccessToken() {
   function buildCommonMessage() {
     return {
       'message': {
-        'token': 'e9U7Y-U9ebvndl1DbvoE6h:APA91bFdC32lZozDiYIvNXy34nxHDPdilq_pJcTfEQEmE86KE9QPbQq_X1vy6qmbaAweIfOkI4P_rv90p5DphANiyHx6xc0BIDE5lHVHdRPlSkd21CKZd1iODMvNH9MqClHIUHXYV76P',
+        'token': 'eYjYamtHTLPAoRRZIkk8zw:APA91bEn1bo23Y24SFD3X3DL365nCCU2x809-vZ9odovLZZ5ERnw-zhTW_Ml68Ec_3jV_HovjR3LbFrkOeyYSVak_Ta-ZB3lh6EDuJ5i46Y5OjFKz2cqv7kYiGJyrkKEn4uifwK14Ri8',
         'notification': {
           'title': 'FCM Notification',
           'body': 'Notification from FCM'
