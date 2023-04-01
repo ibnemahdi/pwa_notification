@@ -1,7 +1,7 @@
 {
   "name": "notifications",
   "version": "1.0.0",
-  "description": "web push notifications poc",
+  "description": "PWA Push",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,8 @@
   "author": "mahdi",
   "license": "ISC",
   "dependencies": {
-    "firebase": "^9.18.0"
+    "firebase": "^9.18.0",
+    "googleapis": "^114.0.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",

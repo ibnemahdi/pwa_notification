@@ -1,12 +1,12 @@
 {
-	"name":"Push Notification POC",
-	"short_name":"PUSH POC",
+	"name":"PWA Push",
+	"short_name":"PWA Push",
 	"start_url":".",
 	"display":"standalone",
-	"background_color":"#5900b3",
-	"theme_color":"black",
+	"background_color":"#ffffff",
+	"theme_color":"#ffffff",
 	"scope": ".",
-	"description":"Web Push PWA Demo.",
+	"description":"Web Push PWA.",
 	"icons":[
         {
             "src": "favicon.ico",
