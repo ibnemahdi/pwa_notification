@@ -58,7 +58,7 @@ self.addEventListener('push', async function(event) {
           body: data.notification.body,
           icon:data.notification.icon,
           image:data.notification.image,
-          badge:'favicon.ico',
+          badge:'images/badge.png',
           actions: [
             {
               action: 'coffee-action',
