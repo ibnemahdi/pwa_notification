@@ -1,5 +1,4 @@
-/*
-importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
+/*importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js');
 
 firebase.initializeApp({
@@ -14,8 +13,8 @@ firebase.initializeApp({
 
 
 const messaging = firebase.messaging();
+ 
 */
-
 var staticCacheName = "pwa";
 
 self.addEventListener("install", function (e) {
@@ -50,7 +49,7 @@ self.addEventListener('notificationclick', (event) => {
 
 self.addEventListener('push', async function(event) {
     const data = event.data.json();
-    //console.log(data);
+    console.log(data);
     event.waitUntil(
         
         self.registration.showNotification(data.notification.title, 
@@ -59,32 +58,7 @@ self.addEventListener('push', async function(event) {
           icon:data.notification.icon,
           image:data.notification.image,
           badge:'images/badge.png',
-          actions: [
-            {
-              action: 'coffee-action',
-              title: 'Coffee',
-              type: 'button',
-              icon: '/images/demos/action-1-128x128.png',
-            },
-            {
-              action: 'doughnut-action',
-              type: 'button',
-              title: 'Doughnut',
-              icon: '/images/demos/action-2-128x128.png',
-            },
-            {
-              action: 'gramophone-action',
-              type: 'button',
-              title: 'Gramophone',
-              icon: '/images/demos/action-3-128x128.png',
-            },
-            {
-              action: 'atom-action',
-              type: 'button',
-              title: 'Atom',
-              icon: '/images/demos/action-4-128x128.png',
-            },
-          ],
+          actions: data.notification.actions,
 
         }
         )

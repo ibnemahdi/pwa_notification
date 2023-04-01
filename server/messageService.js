@@ -40,6 +40,7 @@ function getAccessToken() {
         }
         // [END use_access_token]
       };
+      console.log("headers:",options);
   
       const request = https.request(options, function(resp) {
         resp.setEncoding('utf8');
@@ -64,7 +65,19 @@ function getAccessToken() {
         'token': 'eYjYamtHTLPAoRRZIkk8zw:APA91bEn1bo23Y24SFD3X3DL365nCCU2x809-vZ9odovLZZ5ERnw-zhTW_Ml68Ec_3jV_HovjR3LbFrkOeyYSVak_Ta-ZB3lh6EDuJ5i46Y5OjFKz2cqv7kYiGJyrkKEn4uifwK14Ri8',
         'notification': {
           'title': 'FCM Notification',
-          'body': 'Notification from FCM'
+          'body': 'Notification from FCM',
+          'actions': [
+            {
+              action: 'like-action',
+              title: 'like 👍',
+              type: 'button',
+            },
+            {
+              action: 'dislike-action',
+              type: 'button',
+              title: 'dislike 👎',
+            }
+          ]
         }
       }
     };
