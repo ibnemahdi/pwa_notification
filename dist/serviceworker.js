@@ -81,7 +81,10 @@ self.addEventListener('notificationclick', (event) => {
             }
 
             return clients.openWindow(rootUrl).then(function (client) { 
-                            //client.focus(); 
+                            try{
+                            client.focus();
+                            }
+                            catch{} 
                             client.postMessage("hello World");
                         
                         });
