@@ -59,7 +59,7 @@ function getAccessToken() {
   function buildCommonMessage() {
     return {
       'message': {
-        'token': 'cvQw1_cvAC8JrikfkHiNDw:APA91bFs_tJzPms8CPBKfiD8QM6DRME_1iQ3oIP0WqmtJY1jlHBzmMTPQnIHo5yd8OVMvjmSE-f7LHSzZupind0WdiqiVPjB8Mc5Kr5Agu7fiDD04Ed5tP6T1DmppIWsMMD8oMSd2_id',
+        'token': 'cvQw1_cvAC8JrikfkHiNDw:APA91bFZoEeeDSbbfBY1Lezhx_cAiT7HY3FiGVqrvhhIptW15qssrdq5Kbl1wY9qWIs71WOSLUStRcqo3VFGQY1DHXlNd7Mqwwl_xMWaUL7KX0di0lVvRttwmyV3OmRKjFgbTxwtD__Z',
         'notification': {
           'title': 'FCM Notification',
           'body': 'Notification from FCM'
@@ -85,8 +85,17 @@ function getAccessToken() {
     }
   }
 
+  function delay(t, v) {
+    return new Promise(resolve => setTimeout(resolve, t, v));
+}
 
   const commonMessage = buildCommonMessage();
   console.log('FCM request body for message using common notification object:');
   console.log(JSON.stringify(commonMessage, null, 2));
-  sendFcmMessage(buildCommonMessage());
+
+
+  return delay(1000).then(function() {
+    return   sendFcmMessage(buildCommonMessage());
+});
+
+  
