@@ -64,7 +64,9 @@ self.addEventListener('notificationclick', (event) => {
             {
                 if (client.url.indexOf(rootUrl) >= 0)
                 {
-                    return client.focus();
+                    client.focus();
+                    client.postMessage(event.notification.data);
+                    return;
                 }
             }
 

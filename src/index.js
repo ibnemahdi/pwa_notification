@@ -2,6 +2,10 @@ import {initializeApp} from 'firebase/app';
 import {getMessaging,getToken, onMessage} from 'firebase/messaging'
 
 
+sw.onmessage=function(event){
+    console.log(event.data,document.getElementById(event.data));
+}
+
 
 const firebaseApp = initializeApp(
     {
@@ -21,13 +25,13 @@ const messaging = getMessaging();
 onMessage(messaging, (payload) => {
     
     console.log('Received',payload);
-    alert('Message received. ', payload);
+    //alert('Message received. ', payload);
     // ...
   });
 
 
 
-
+ 
 window.addEventListener('load', () => {
     console.log("Version 5");
     registerSW();
