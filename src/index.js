@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
   
 
 navigator.serviceWorker.onmessage=function(event){
-    console.log(event.data,document.getElementById(event.data));
+    alert(JSON.stringify(event.data));
 }
 
 

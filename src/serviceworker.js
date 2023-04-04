@@ -65,7 +65,16 @@ self.addEventListener('notificationclick', (event) => {
                 if (client.url.indexOf(rootUrl) >= 0)
                 {
                     client.focus();
-                    client.postMessage(event.notification.data);
+                    const click_event_msg = {   
+                                                actions:event.notification.actions, 
+                                                data:event.notification.data,
+                                                icon:event.notification.icon,
+                                                badge:event.notification.badge,
+                                                title:event.notification.title,
+                                                clicked_action:event.action
+                                            };
+                    console.log("Service Worker data:",click_event_msg )
+                    client.postMessage(click_event_msg);
                     return;
                 }
             }
@@ -78,7 +87,6 @@ self.addEventListener('notificationclick', (event) => {
 self.addEventListener('push', async function(event) {
 
     const data = event.data.json();
-    console.log(data);
     event.waitUntil(
         
         self.registration.showNotification(data.notification.title, 
