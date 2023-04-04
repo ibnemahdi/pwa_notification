@@ -57,6 +57,14 @@ self.addEventListener('notificationclick', (event) => {
     event.waitUntil(promiseChain);*/
     const rootUrl = new URL('./', location).href; 
     event.notification.close();
+    const click_event_msg = {   
+        actions:event.notification.actions, 
+        data:event.notification.data,
+        icon:event.notification.icon,
+        badge:event.notification.badge,
+        title:event.notification.title,
+        clicked_action:event.action
+    };
     event.waitUntil(
         clients.matchAll().then(matchedClients =>
         {
@@ -65,14 +73,7 @@ self.addEventListener('notificationclick', (event) => {
                 if (client.url.indexOf(rootUrl) >= 0)
                 {
                     client.focus();
-                    const click_event_msg = {   
-                                                actions:event.notification.actions, 
-                                                data:event.notification.data,
-                                                icon:event.notification.icon,
-                                                badge:event.notification.badge,
-                                                title:event.notification.title,
-                                                clicked_action:event.action
-                                            };
+                   
                     console.log("Service Worker data:",click_event_msg )
                     client.postMessage(click_event_msg);
                     return;
@@ -81,7 +82,7 @@ self.addEventListener('notificationclick', (event) => {
 
             return clients.openWindow(rootUrl).then(function (client) { 
                             client.focus(); 
-                            client.postMessage(click_event_msg);
+                            client.postMessage("hello World");
                         
                         });
         })
