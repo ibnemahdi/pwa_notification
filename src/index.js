@@ -2,9 +2,7 @@ import {initializeApp} from 'firebase/app';
 import {getMessaging,getToken, onMessage} from 'firebase/messaging'
 
 
-sw.onmessage=function(event){
-    console.log(event.data,document.getElementById(event.data));
-}
+
 
 
 const firebaseApp = initializeApp(
@@ -45,17 +43,21 @@ window.addEventListener('load', () => {
               .serviceWorker
               .register('serviceworker.js').then((registration) => {
                 
-                  //messaging.useServiceWorker(registration);
-                  
 
-              // Request permission and get token.....
               });
-      }
+      
+      
+            }
       catch (e) {
         console.log('SW registration failed',e);
       }
     }
   }
+  
+
+navigator.serviceWorker.onmessage=function(event){
+    console.log(event.data,document.getElementById(event.data));
+}
 
 
 export default function requestPermission() {
