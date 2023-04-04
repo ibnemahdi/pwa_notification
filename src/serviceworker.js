@@ -38,16 +38,43 @@ event.respondWith(
 
  
 self.addEventListener('notificationclick', (event) => {
+    
+    
+    /*
+    if (!event.action) {
+        // Was a normal notification click
+        console.log('Notification Click.');
+        return;
+    }
+
     const clickedNotification = event.notification;
+    console.log(clickedNotification);
     
     clickedNotification.close();
   
     // Do something as the result of the notification click
     const promiseChain = clients.openWindow('https://www.google.com');
-    event.waitUntil(promiseChain);
+    event.waitUntil(promiseChain);*/
+    const rootUrl = new URL('./', location).href; 
+    event.notification.close();
+    event.waitUntil(
+        clients.matchAll().then(matchedClients =>
+        {
+            for (let client of matchedClients)
+            {
+                if (client.url.indexOf(rootUrl) >= 0)
+                {
+                    return client.focus();
+                }
+            }
+
+            return clients.openWindow(rootUrl).then(function (client) { client.focus(); });
+        })
+    );
   });
 
 self.addEventListener('push', async function(event) {
+
     const data = event.data.json();
     console.log(data);
     event.waitUntil(

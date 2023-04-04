@@ -40,7 +40,7 @@ function getAccessToken() {
         }
         // [END use_access_token]
       };
-      console.log("headers:",options);
+      //console.log("headers:",options);
   
       const request = https.request(options, function(resp) {
         resp.setEncoding('utf8');
@@ -62,25 +62,30 @@ function getAccessToken() {
   function buildCommonMessage() {
     return {
       'message': {
-        'token': 'eYjYamtHTLPAoRRZIkk8zw:APA91bEn1bo23Y24SFD3X3DL365nCCU2x809-vZ9odovLZZ5ERnw-zhTW_Ml68Ec_3jV_HovjR3LbFrkOeyYSVak_Ta-ZB3lh6EDuJ5i46Y5OjFKz2cqv7kYiGJyrkKEn4uifwK14Ri8',
+        'token': 'cvQw1_cvAC8JrikfkHiNDw:APA91bHW1VZNSlXjmx7U1-sjiQ7ahm4PM8m5UQfc_PaGcvpienyQ6y1MTJkj1USPXuYC-fALxWvo6oBFR6g4-zvOgeQB0IfjCJIhS8CodczPix2M9VxuuI2c63q7jfsxlZd21mWkP_rh',
         'notification': {
           'title': 'FCM Notification',
-          'body': 'Notification from FCM',
-          'actions': [
-            {
-              action: 'like-action',
-              title: 'like 👍',
-              type: 'button',
-            },
-            {
-              action: 'dislike-action',
-              type: 'button',
-              title: 'dislike 👎',
-            }
-          ]
-        }
+          'body': 'Notification from FCM'
+          },
+          'webpush':{
+            "notification":{
+                "actions":[
+                {
+                  "action": "like-action",
+                  "title": "like 👍",
+                  "type": "button"
+                },
+                {
+                  "action": "dislike-action",
+                  "title": "dislike 👎",
+                  "type": "button"
+                },
+                ]
+
+          }
       }
-    };
+    }
+    }
   }
 
 
