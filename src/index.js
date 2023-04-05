@@ -31,6 +31,9 @@ onMessage(messaging, (payload) => {
 function getJsonFromUrl() {
     const url = location.search;
     var query = url.substring(1);
+    if(!query.includes("msg_payload")){
+        return;
+    }
     var result = {};
     query.split("&").forEach(function(part) {
       var item = part.split("=");
@@ -40,11 +43,12 @@ function getJsonFromUrl() {
   }
  
 window.addEventListener('load', () => {
-    console.log("Version 5");
+    console.log("Version 7");
     registerSW();
     const payload = getJsonFromUrl();
-    if(payload != {}){
-        alert(payload);
+    if(payload){
+        console.log("Payload:",JSON.parse(JSON.parse(payload).msg_payload));
+        //alert(JSON.parse(payload));
     }
 
   });

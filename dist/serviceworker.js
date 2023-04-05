@@ -63,9 +63,10 @@ self.addEventListener('notificationclick', (event) => {
         icon:event.notification.icon,
         badge:event.notification.badge,
         title:event.notification.title,
+        body:event.notification.title,
         clicked_action:event.action
     };
-    const rootUrlWithParameters = `${rootUrl}?msg=${JSON.stringify(click_event_msg)}`;
+    const rootUrlWithParameters = `${rootUrl}?msg_payload=${JSON.stringify(click_event_msg)}`;
 
     event.waitUntil(
         clients.matchAll().then(matchedClients =>
