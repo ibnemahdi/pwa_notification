@@ -65,6 +65,8 @@ self.addEventListener('notificationclick', (event) => {
         title:event.notification.title,
         clicked_action:event.action
     };
+    const rootUrlWithParameters = `${rootUrl}?msg=${JSON.stringify(click_event_msg)}`;
+
     event.waitUntil(
         clients.matchAll().then(matchedClients =>
         {
@@ -80,12 +82,9 @@ self.addEventListener('notificationclick', (event) => {
                 }
             }
 
-            return clients.openWindow(rootUrl).then(function (client) { 
-                            try{
-                            client.focus();
-                            }
-                            catch{} 
-                            client.postMessage("hello World");
+            return clients.openWindow(rootUrlWithParameters).then(function (client) { 
+                            //client.focus() 
+                            //client.postMessage("hello World");
                         
                         });
         })

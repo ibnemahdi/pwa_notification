@@ -28,11 +28,25 @@ onMessage(messaging, (payload) => {
   });
 
 
-
+function getJsonFromUrl() {
+    const url = location.search;
+    var query = url.substring(1);
+    var result = {};
+    query.split("&").forEach(function(part) {
+      var item = part.split("=");
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return JSON.stringify(result);
+  }
  
 window.addEventListener('load', () => {
     console.log("Version 5");
     registerSW();
+    const payload = getJsonFromUrl();
+    if(payload != {}){
+        alert(payload);
+    }
+
   });
 
   // Register the Service Worker
