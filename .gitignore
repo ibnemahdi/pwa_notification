@@ -37,3 +37,9 @@ docs/*
 #git add .
 #git remote add origin https://ibnemahdi@github.com/ibnemahdi/pwa_notification.git
 #git push -u -f origin master
+
+
+#-----
+#git add . 
+#git commit -m "comments"
+#git push origin main

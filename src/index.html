@@ -9,6 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar" content="red">
     <meta name="theme-color" content="black">
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@material/theme@9.0.0/dist/mdc.theme.min.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./main.css">
     
@@ -23,12 +25,11 @@
     <header class="mdc-top-app-bar" id="top-bar">
         <div class="mdc-top-app-bar__row">
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <img class="mdc-top-app-bar__navigation-icon" src="favicon.ico" alt="My Logo" width="50">
-            <span class="mdc-top-app-bar__title">PWA POC</span>
+            <img class="mdc-top-app-bar__navigation-icon" src="images/icon512_512.png" alt="My Logo" width="50">
+            <span class="mdc-top-app-bar__title">PWA Notification</span>
           </section>
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" title="Share" onclick="openShareBox()">share</button>
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
           </section>
         </div>
       </header>
@@ -54,10 +55,12 @@
               </div>
             </div>
           </div>
-          <button class="mdc-fab" aria-label="Favorite" align="center" onClick="askPermission()" style="display:none" id="pushRequest">
+
+          <button class="mdc-fab mdc-fab--extended"  onClick="askPermission()" id="pushRequest">
             <div class="mdc-fab__ripple"></div>
-            <span class="mdc-fab__icon material-icons">add_alert</span>
-          </button>
+            <span class="material-icons mdc-fab__icon">add_alert</span>
+            <span class="mdc-fab__label">Receive Notificatins</span>
+            </button>
           <!-- Code Copy Popup Start-->
           <div class="mdc-dialog">
             <div class="mdc-dialog__container">
@@ -104,7 +107,7 @@ const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 //banner.open()
 window.addEventListener('load', () => {
     if(Notification.permission != "granted"){
-        document.getElementById("pushRequest").style.display = "block";
+        document.getElementById("pushRequest").style.display = "";
     }else{
         requestPermission().then(data => {
             document.getElementById("notficationCode").value = data;
