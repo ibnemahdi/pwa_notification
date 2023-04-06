@@ -1,0 +1,12 @@
+.mdc-fab {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  transform: translate(-50%, -50%);
+  background: #000;
+}
+.mdc-fab .mdc-fab__icon  {
+    font-size: 55px; /* Replace with your desired size */
+  }

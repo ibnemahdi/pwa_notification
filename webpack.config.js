@@ -16,6 +16,7 @@ module.exports = {
         new CopyPlugin({
           patterns: [
             { from: "src/index.html", to: "index.html" },
+            { from: "src/main.css", to: "main.css" },
             //{ from: "src/firebase-messaging-sw.js", to: "firebase-messaging-sw.js" },
             {from: "src/favicon.ico", to:"favicon.ico"},
             {from: "src/images", to:"images"},

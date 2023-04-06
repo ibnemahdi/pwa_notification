@@ -78,6 +78,8 @@ navigator.serviceWorker.onmessage=function(event){
 }
 
 
+
+
 export default function requestPermission() {
     console.log('Requesting permission...');
     Notification.requestPermission().then( (permission) => {

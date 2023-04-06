@@ -6,7 +6,7 @@
 	"background_color":"#ffffff",
 	"theme_color":"#ffffff",
 	"scope": ".",
-	"description":"Web Push PWA.",
+	"description":"PWA Web Push Notifications",
 	"icons":[
         {
             "src": "favicon.ico",
