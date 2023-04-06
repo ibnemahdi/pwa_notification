@@ -10,3 +10,9 @@
 .mdc-fab .mdc-fab__icon  {
     font-size: 55px; /* Replace with your desired size */
   }
+
+  body {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
