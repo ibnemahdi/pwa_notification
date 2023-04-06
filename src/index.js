@@ -20,6 +20,9 @@ const firebaseApp = initializeApp(
 
 const messaging = getMessaging();
 
+const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
+snackbar.open();
+
 onMessage(messaging, (payload) => {
     
     console.log('Received',payload);

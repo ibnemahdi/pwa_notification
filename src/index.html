@@ -29,7 +29,9 @@
             <span class="mdc-top-app-bar__title">PWA Notification</span>
           </section>
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" title="help">help</button>
             <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" title="Share" onclick="openShareBox()">share</button>
+
           </section>
         </div>
       </header>
@@ -90,10 +92,51 @@
           </div>
           <!-- code copy popup end-->
 
-          <!-- Gallery -->
+          <!-- body -->
+          <br/>
+          <br/>
+          <div class="button-container-div">
+          <button class="mdc-button mdc-button--outlined mdc-button--icon-leading">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">add_alert</i>
+            <span class="mdc-button__label">Send MEME</span>
+          </button>
 
-  <!-- Gallery -->
-   
+          <button class="mdc-button mdc-button--outlined mdc-button--icon-leading">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">timer</i>
+            <span class="mdc-button__label">Send Timed Meme</span>
+          </button>
+
+          <button class="mdc-button mdc-button--outlined mdc-button--icon-leading">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">timer</i>
+            <span class="mdc-button__label">Send Timed Meme</span>
+          </button>
+          <button class="mdc-button mdc-button--outlined mdc-button--icon-leading">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">timer</i>
+            <span class="mdc-button__label">Send Timed Meme</span>
+          </button>
+          </div>
+
+          <aside class="mdc-snackbar">
+            <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+              <div class="mdc-snackbar__label" aria-atomic="false">
+                Can't send photo. Retry in 5 seconds.
+              </div>
+              <div class="mdc-snackbar__actions" aria-atomic="true">
+                <button type="button" class="mdc-button mdc-snackbar__action">
+                  <div class="mdc-button__ripple"></div>
+                  <span class="mdc-button__label">Dismiss</span>
+                </button>
+              </div>
+            </div>
+          </aside>
+          
+
+            <!-- body -->
+     
       </main>
 
 
@@ -106,8 +149,11 @@ const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 
 
 
+
 //banner.open()
 window.addEventListener('load', () => {
+    
+
     if(Notification.permission != "granted"){
         document.getElementById("pushRequest").style.display = "";
     }else{
@@ -117,6 +163,11 @@ window.addEventListener('load', () => {
         
     }
 });
+
+
+
+
+
 
 dialog.listen('MDCDialog:closed', (event) => {
   const action = event.detail.action;

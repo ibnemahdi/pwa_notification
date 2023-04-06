@@ -39,3 +39,19 @@ textarea {
   overflow: auto;
     
 }
+
+.button-container-div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.button-container-div button {
+    
+    margin-top: 10px;
+    margin-right: 150px;
+    margin-left: 150px;
+
+  }
+  
