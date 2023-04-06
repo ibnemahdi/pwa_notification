@@ -17,6 +17,13 @@
     margin: 0;
     padding: 0;
     background-color: #f1faee;
+
+
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 textarea {
   font-family: Consolas,"courier new";
