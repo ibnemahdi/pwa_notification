@@ -27,7 +27,7 @@
             <span class="mdc-top-app-bar__title">PWA POC</span>
           </section>
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" title="Share">share</button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" title="Share" onclick="openShareBox()">share</button>
             <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
           </section>
         </div>
@@ -58,6 +58,34 @@
             <div class="mdc-fab__ripple"></div>
             <span class="mdc-fab__icon material-icons">add_alert</span>
           </button>
+          <!-- Code Copy Popup Start-->
+          <div class="mdc-dialog">
+            <div class="mdc-dialog__container">
+              <div class="mdc-dialog__surface"
+                role="alertdialog"
+                aria-modal="true"
+                aria-labelledby="my-dialog-title"
+                aria-describedby="my-dialog-content">
+                <div class="mdc-dialog__content" id="my-dialog-content">
+                  Copy Notification Token
+                  <textArea id="notficationCode" readonly>
+                  </textarea>
+                </div>
+                <div class="mdc-dialog__actions">
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Cancel</span>
+                  </button>
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="copy">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Copy</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mdc-dialog__scrim"></div>
+          </div>
+          <!-- code copy popup end-->
  
         
    
@@ -69,21 +97,51 @@
 <script>
 const MDCBanner = mdc.banner.MDCBanner;
 const banner = new MDCBanner(document.querySelector('.mdc-banner'));
+const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 
 
 
 //banner.open()
 window.addEventListener('load', () => {
     if(Notification.permission != "granted"){
-        const elem = document.getElementById("pushRequest");
         document.getElementById("pushRequest").style.display = "block";
+    }else{
+        requestPermission().then(data => {
+            document.getElementById("notficationCode").value = data;
+        });
+        
     }
 });
-    
 
-    function askPermission(){
-        requestPermission()
-    }
+dialog.listen('MDCDialog:closed', (event) => {
+  const action = event.detail.action;
+  if (action === 'copy') {
+    // Handle delete action
+    navigator.clipboard.writeText(document.getElementById("notficationCode").value )
+    
+  } else if (action === 'cancel') {
+    // Handle cancel action
+  }
+});
+
+function openShareBox(){
+
+    dialog.open()
+}
+
+
+function askPermission(){
+    requestPermission().then(data => {
+            if(data){
+                document.getElementById("pushRequest").style.display = "none";
+                document.getElementById("notficationCode").value = data;
+                
+            }else{
+                alert('Access Denied');
+            }
+      
+        });
+}
 
 </script>
 </html>

@@ -80,28 +80,21 @@ navigator.serviceWorker.onmessage=function(event){
 
 
 
-export default function requestPermission() {
+export default async function requestPermission() {
     console.log('Requesting permission...');
-    Notification.requestPermission().then( (permission) => {
+    return Notification.requestPermission().then( (permission) => {
       if (permission === 'granted') {
         console.log('Notification permission granted.');
         //serviceWorkerRegistration: registration
-        navigator.serviceWorker.getRegistration().then(function(registration) {
-            getToken(messaging, {serviceWorkerRegistration: registration,vapidKey: 'BMB9PzYcnzpUDKCfI2WCiCmC-OtV64dcmt-HufkRnIJ4HmwUMBDa_lntm7FeHbMNcloZJr-e5I2EBVORU-gn2AI' }).then((currentToken) => {
+        return navigator.serviceWorker.getRegistration().then(function(registration) {
+            return getToken(messaging, {serviceWorkerRegistration: registration,vapidKey: 'BMB9PzYcnzpUDKCfI2WCiCmC-OtV64dcmt-HufkRnIJ4HmwUMBDa_lntm7FeHbMNcloZJr-e5I2EBVORU-gn2AI' }).then((currentToken) => {
                 if (currentToken) {
-                // Send the token to your server and update the UI if necessary
-                // ...
-            
-                document.getElementById("notifyId").innerHTML=currentToken; 
-                console.log(currentToken)
+                    return currentToken; 
                 } else {
-                // Show permission request UI
                 console.log('No registration token available. Request permission to generate one.');
-                // ...
                 }
             }).catch((err) => {
                 console.log('An error occurred while retrieving token. ', err);
-                // ...
             });
         } );  
 

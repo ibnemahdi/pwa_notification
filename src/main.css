@@ -16,3 +16,17 @@
     margin: 0;
     padding: 0;
 }
+textarea {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+  border: none;
+    outline: none;
+  min-height: 5em;
+  width: 100%;
+  resize: none;
+  overflow: auto;
+    
+}
