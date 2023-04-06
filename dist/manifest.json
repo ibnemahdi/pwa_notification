@@ -3,8 +3,8 @@
 	"short_name":"PWA Push",
 	"start_url":".",
 	"display":"standalone",
-	"background_color":"#ffffff",
-	"theme_color":"#ffffff",
+	"background_color":"#EA3D58",
+	"theme_color":"#EA3D58",
 	"scope": ".",
 	"description":"PWA Web Push Notifications",
 	"icons":[
