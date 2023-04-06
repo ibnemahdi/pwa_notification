@@ -8,7 +8,7 @@
   left: 50%;
 
   transform: translate(-50%, -50%);
-  background: #EA3D58;
+  background: grey;
 }
 
 
@@ -44,14 +44,19 @@ textarea {
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 400px;
+    margin: 0 auto;
+
 
 }
 
-.button-container-div button {
-    
+.button-container-div .mdc-fab {
+    position: inherit;
     margin-top: 10px;
-    margin-right: 150px;
-    margin-left: 150px;
+    transform: none;
+
+    
+    
 
   }
   
