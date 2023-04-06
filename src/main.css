@@ -44,11 +44,33 @@ textarea {
     display: flex;
     flex-direction: column;
     text-align: center;
-    top: 50%;
-    left: 50%;
-
-
-}
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    /* Apply different margin values on screens with a minimum width of 768px */
+    .button-container-div {
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    /* Apply different margin values on screens with a minimum width of 992px */
+    .button-container-div {
+      margin-top: 100px;
+      margin-bottom: 100px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    /* Apply different margin values on screens with a minimum width of 1200px */
+    .button-container-div {
+      margin-top: 100px;
+      margin-bottom: 150px;
+    }
+  }
 
 .button-container-div .mdc-fab {
     position: inherit;
