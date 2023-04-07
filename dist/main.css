@@ -44,7 +44,7 @@ textarea {
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 400px;
+    width: 300px;
     margin: 0 auto;
   }
   
@@ -53,22 +53,25 @@ textarea {
     .button-container-div {
       margin-top: 30px;
       margin-bottom: 50px;
+      width: 400px;
     }
   }
   
   @media (min-width: 992px) {
     /* Apply different margin values on screens with a minimum width of 992px */
     .button-container-div {
-      margin-top: 100px;
+      margin-top: 70px;
       margin-bottom: 100px;
+      width: 500px;
     }
   }
   
   @media (min-width: 1200px) {
     /* Apply different margin values on screens with a minimum width of 1200px */
     .button-container-div {
-      margin-top: 100px;
+      margin-top: 80px;
       margin-bottom: 150px;
+      width: 600px;
     }
   }
 
