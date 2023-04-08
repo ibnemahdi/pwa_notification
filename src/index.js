@@ -63,11 +63,7 @@ window.addEventListener('load', () => {
         await navigator
               .serviceWorker
               .register('serviceworker.js').then((registration) => {
-                
-
               });
-      
-      
             }
       catch (e) {
         console.log('SW registration failed',e);
@@ -75,7 +71,6 @@ window.addEventListener('load', () => {
     }
   }
   
-
 navigator.serviceWorker.onmessage=function(event){
    document.querySelector('bell-component').ringBell();
    setTimeout(function () {
