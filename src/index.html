@@ -167,7 +167,7 @@ window.addEventListener('load', () => {
 function sendNotfication(type, timeout){
 
   let data = {token:  document.getElementById("notficationCode").value ,type:type,delay:timeout};
-  fetch("http://localhost:8080/", {
+  fetch("https://firebasepushtest.scm.azurewebsites.net/", {
     method: "POST",
     headers: {'Content-Type': 'application/json'}, 
     body: JSON.stringify(data)
