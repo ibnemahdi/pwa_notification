@@ -42,7 +42,7 @@ self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     const click_event_msg = {   
         actions:event.notification.actions, 
-        data:event.notification.data,
+        //data:event.data,
         icon:'/favicon.ico',
         badge:'images/badge.png',
         title:event.notification.title,
@@ -86,7 +86,7 @@ self.addEventListener('push', (e) => {
             badge:'images/badge.png',
             actions: data.notification.actions,
             title:data.notification.title,
-            data:data.notification.data,
+            data:data.data,
         };
         console.log("Service Worker data:",click_event_msg )
         client.postMessage(click_event_msg);
@@ -105,7 +105,7 @@ self.addEventListener('push', (e) => {
                 badge:'images/badge.png',
                 actions: data.notification.actions,
                 title:data.notification.title,
-                data:data.notification.data,
+                data:data.data,
             })
         );
         }

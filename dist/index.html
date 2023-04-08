@@ -96,22 +96,22 @@
           <br/>
           <br/>
           <div class="button-container-div">
-            <button class="mdc-fab mdc-fab--extended"  >
+            <button class="mdc-fab mdc-fab--extended"  onclick="sendNotfication('meme',0)">
                 <div class="mdc-fab__ripple"></div>
                 <span class="material-icons mdc-fab__icon">add_alert</span>
                 <span class="mdc-fab__label">Push a Meme Now</span>
               </button>
-              <button class="mdc-fab mdc-fab--extended"  >
+              <button class="mdc-fab mdc-fab--extended"  onclick="sendNotfication('meme',5000)" >
                 <div class="mdc-fab__ripple"></div>
                 <span class="material-icons mdc-fab__icon">timer</span>
                 <span class="mdc-fab__label">push a meme (5 Sec)</span>
               </button>
-              <button class="mdc-fab mdc-fab--extended" >
+              <button class="mdc-fab mdc-fab--extended" onclick="sendNotfication('meme',0)">
                 <div class="mdc-fab__ripple"></div>
                 <span class="material-icons mdc-fab__icon">add_alert</span>
                 <span class="mdc-fab__label">Assign Order Now</span>
               </button>
-              <button class="mdc-fab mdc-fab--extended" >
+              <button class="mdc-fab mdc-fab--extended" onclick="sendNotfication('order',5000)">
                 <div class="mdc-fab__ripple"></div>
                 <span class="material-icons mdc-fab__icon">timer</span>
                 <span class="mdc-fab__label">Assign Order (5 Sec)</span>
@@ -164,7 +164,17 @@ window.addEventListener('load', () => {
 
 
 
+function sendNotfication(type, timeout){
 
+  let data = {token:  document.getElementById("notficationCode").value ,type:type,delay:timeout};
+  fetch("http://localhost:8080/", {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'}, 
+    body: JSON.stringify(data)
+  }).then(res => {
+    console.log("Request complete! response:", res);
+  });
+}
 
 
 dialog.listen('MDCDialog:closed', (event) => {
