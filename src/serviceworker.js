@@ -42,7 +42,7 @@ self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     const click_event_msg = {   
         actions:event.notification.actions, 
-        data:event.data,
+        data:event.notification.data,
         icon:'/favicon.ico',
         badge:'images/badge.png',
         title:event.notification.title,
@@ -64,7 +64,7 @@ self.addEventListener('notificationclick', (event) => {
                 }
             }
             return clients.openWindow(rootUrlWithParameters).then(function (client) { 
-                            client.focus() 
+                            //client.focus() 
                         
                         });
         })
