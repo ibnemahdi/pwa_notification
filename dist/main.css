@@ -79,9 +79,16 @@ textarea {
     position: inherit;
     margin-top: 10px;
     transform: none;
-
-    
-    
-
   }
-  
+  bell-component{
+    --background: #EA3D58;
+    --svgfilter: invert(38%) sepia(78%) saturate(4080%) hue-rotate(331deg) brightness(96%) contrast(90%);
+ 
+  }
+
+  .center {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+  }

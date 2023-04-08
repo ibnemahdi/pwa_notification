@@ -95,6 +95,7 @@
           <!-- body -->
           <br/>
           <br/>
+          <div id="allowed_alert" style="display: none;">
           <div class="button-container-div">
             <button class="mdc-fab mdc-fab--extended"  onclick="sendNotfication('meme',0)">
                 <div class="mdc-fab__ripple"></div>
@@ -116,8 +117,8 @@
                 <span class="material-icons mdc-fab__icon">timer</span>
                 <span class="mdc-fab__label">Assign Order (5 Sec)</span>
               </button>
-              
-
+              <bell-component class="center"></bell-component>
+              </div>  
           <aside class="mdc-snackbar">
             <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
               <div class="mdc-snackbar__label" aria-atomic="false">
@@ -140,6 +141,7 @@
 
 </body>
 <script type="module" src="/bundle.js"></script>
+<script src="/bell-component.js"></script>
 <script>
 const MDCBanner = mdc.banner.MDCBanner;
 const banner = new MDCBanner(document.querySelector('.mdc-banner'));
@@ -157,6 +159,7 @@ window.addEventListener('load', () => {
     }else{
         requestPermission().then(data => {
             document.getElementById("notficationCode").value = data;
+            document.getElementById("allowed_alert").style.display = "";
         });
         
     }
@@ -199,6 +202,7 @@ function askPermission(){
             if(data){
                 document.getElementById("pushRequest").style.display = "none";
                 document.getElementById("notficationCode").value = data;
+                document.getElementById("allowed_alert").style.display = "";
                 
             }else{
                 alert('Access Denied');

@@ -77,7 +77,11 @@ window.addEventListener('load', () => {
   
 
 navigator.serviceWorker.onmessage=function(event){
+   document.querySelector('bell-component').ringBell();
+   setTimeout(function () {
     alert(JSON.stringify(event.data));
+  }, 1200);
+    
 }
 
 

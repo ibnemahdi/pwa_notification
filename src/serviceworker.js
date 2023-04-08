@@ -42,7 +42,7 @@ self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     const click_event_msg = {   
         actions:event.notification.actions, 
-        //data:event.data,
+        data:event.data,
         icon:'/favicon.ico',
         badge:'images/badge.png',
         title:event.notification.title,

@@ -21,7 +21,8 @@ module.exports = {
             {from: "src/favicon.ico", to:"favicon.ico"},
             {from: "src/images", to:"images"},
             {from: "src/manifest.json" , to:"manifest.json"},
-            {from: "src/serviceworker.js", to:"serviceworker.js" }
+            {from: "src/serviceworker.js", to:"serviceworker.js" },
+            {from: "src/bell-component.js", to:"bell-component.js" }
           ],
         }),
       ],
