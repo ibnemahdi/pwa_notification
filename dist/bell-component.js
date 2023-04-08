@@ -10,20 +10,15 @@ class BellComponent extends HTMLElement {
         .bell-img{
 			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>');
 			
-			height: 115px;
-			width:100px;
+			height: 57px;
+			width:50px;
 			filter:var(--svgfilter);
-			
-		
-			
-			
-			
 		
 		}
 		.bell-container {
           position: relative;
-          width: 200px;
-          height: 200px;
+          width: 100px;
+          height: 100px;
           border-radius: 50%;
           background-color:var(--background);
           display: flex;
@@ -36,19 +31,14 @@ class BellComponent extends HTMLElement {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 160px;
-          height: 160px;
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
           background-color: white;
           display: flex;
           justify-content: center;
           align-items: center;
           overflow: hidden;
-        }
-
-        .fa-bell {
-          font-size: 120px;
-          color: red;
         }
 
         .bell.ringing .bell-img {
