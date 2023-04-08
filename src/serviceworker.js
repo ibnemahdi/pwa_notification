@@ -86,7 +86,7 @@ self.addEventListener('push', (e) => {
             badge:'images/badge.png',
             actions: data.notification.actions,
             title:data.notification.title,
-            data:event.notification.data,
+            data:data.notification.data,
         };
         console.log("Service Worker data:",click_event_msg )
         client.postMessage(click_event_msg);
@@ -105,7 +105,7 @@ self.addEventListener('push', (e) => {
                 badge:'images/badge.png',
                 actions: data.notification.actions,
                 title:data.notification.title,
-                data:event.notification.data,
+                data:data.notification.data,
             })
         );
         }
