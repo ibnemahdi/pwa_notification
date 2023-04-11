@@ -68,6 +68,10 @@ window.addEventListener('load', () => {
   }
   
 navigator.serviceWorker.onmessage=function(event){
+  if(event.action){
+    processEvent(event.action);
+    return;
+  }
    document.querySelector('bell-component').ringBell();
    setTimeout(function () {
     openNotificationDialog(event.data)

@@ -172,10 +172,11 @@ const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snack
 
 //Dialog message box
 function openNotificationDialog(message){
+  /*
   if(message.clicked_action){
     processEvent(message.clicked_action);
     return;
-  }
+  }*/
 
   console.log('Notifcation Message:',message);
   document.getElementById('dialog-title').innerHTML = message.title;
