@@ -173,7 +173,8 @@ const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snack
 //Dialog message box
 function openNotificationDialog(message){
   if(message.clicked_action){
-    showSnackBar("You have clicked on the bar");
+    processEvent(message.clicked_action);
+    return;
   }
 
   console.log('Notifcation Message:',message);
@@ -210,16 +211,29 @@ function openNotificationDialog(message){
 
 dialogNotify.listen('MDCDialog:closed', (event) => {
   const action = event.detail.action;
+  /*
   if (action === 'like') {
     showSnackBar("You have liked 👍 the Notfication ");
-    
   } else if (action === 'dislike') {
     showSnackBar("You have disliked 👎 the Notfication ");
   }else if (action === 'dismiss') {
     showSnackBar("You have dismissed the Notification");
-  }
+  }*/
+  processEvent(action);
 });
 
+
+function processEvent(action){
+  if(action == 'like'){
+      showSnackBar("You have disliked 👎 the Notfication ");
+  }
+  else if(actoin == 'dislike'){
+    showSnackBar("You have disliked 👎 the Notfication ");
+  }
+  else if (action === 'dismiss') {
+    showSnackBar("You have dismissed the Notification");
+  }
+}
 
 </script>
 </html>
