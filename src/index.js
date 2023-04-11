@@ -1,8 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import {getMessaging,getToken, onMessage} from 'firebase/messaging'
-
-
-
+import {getMessaging,getToken} from 'firebase/messaging'
 
 
 const firebaseApp = initializeApp(
@@ -17,18 +14,7 @@ const firebaseApp = initializeApp(
       }
 );
 
-
 const messaging = getMessaging();
-
-const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
-snackbar.open();
-
-onMessage(messaging, (payload) => {
-    
-    console.log('Received',payload);
-    //alert('Message received. ', payload);
-    // ...
-  });
 
 
 function getJsonFromUrl() {
@@ -46,12 +32,22 @@ function getJsonFromUrl() {
   }
  
 window.addEventListener('load', () => {
-    console.log("Version 7");
+    console.log("Version 9");
     registerSW();
     const payload = getJsonFromUrl();
     if(payload){
-        console.log("Payload:",JSON.parse(JSON.parse(payload).msg_payload));
-        //alert(JSON.parse(payload));
+        openNotificationDialog(JSON.parse(JSON.parse(payload).msg_payload));
+
+
+    }
+    //Notification Access
+    if(Notification.permission != "granted"){
+      document.getElementById("pushRequest").style.display = "";
+    }else{
+        requestPermission().then(data => {
+            document.getElementById("notficationCode").value = data;
+            document.getElementById("allowed_alert").style.display = "";
+        });
     }
 
   });
@@ -74,12 +70,10 @@ window.addEventListener('load', () => {
 navigator.serviceWorker.onmessage=function(event){
    document.querySelector('bell-component').ringBell();
    setTimeout(function () {
-    alert(JSON.stringify(event.data));
+    openNotificationDialog(event.data)
   }, 1200);
     
 }
-
-
 
 
 export default async function requestPermission() {
@@ -104,8 +98,57 @@ export default async function requestPermission() {
     })
 }
 
+//Open Tokcen Code popup
+function openShareBox(){
+  dialogCode.open()
+}
+window.openShareBox=openShareBox;
 
 
+function askPermission(){
+  requestPermission().then(data => {
+          if(data){
+              document.getElementById("pushRequest").style.display = "none";
+              document.getElementById("notficationCode").value = data;
+              document.getElementById("allowed_alert").style.display = "";
+              
+          }else{
+              alert('Access Denied');
+          }
+    
+      });
+}
+window.askPermission=askPermission;
+
+dialogCode.listen('MDCDialog:closed', (event) => {
+  const action = event.detail.action;
+  if (action === 'copy') {
+    // Handle delete action
+    navigator.clipboard.writeText(document.getElementById("notficationCode").value )
+    showSnackBar("Token Copied to clipboard");
+    
+  } else if (action === 'cancel') {
+    // Handle cancel action
+  }
+});
+
+function sendNotfication(type, timeout){
+  let data = {token:  document.getElementById("notficationCode").value ,type:type,delay:timeout};
+  fetch("https://firebasepushtest.azurewebsites.net/", {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'}, 
+    body: JSON.stringify(data)
+  }).then(res => {
+    console.log("Request complete!, response:", res);
+  });
+}
+
+window.sendNotfication=sendNotfication;
 
 
+function showSnackBar(text){
+  document.getElementById('snackbar_text_id').innerHTML = text;
+  snackbar.open();
+}
 
+window.showSnackBar=showSnackBar;

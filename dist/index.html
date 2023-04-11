@@ -25,7 +25,7 @@
     <header class="mdc-top-app-bar" id="top-bar">
         <div class="mdc-top-app-bar__row">
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <img class="mdc-top-app-bar__navigation-icon" src="images/icon512_512.png" alt="My Logo" width="50">
+            <!--<img class="mdc-top-app-bar__navigation-icon" src="images/icon512_512.png" alt="My Logo" width="50">-->
             <span class="mdc-top-app-bar__title">PWA Notification</span>
           </section>
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
@@ -36,40 +36,17 @@
         </div>
       </header>
       <main class="mdc-top-app-bar--fixed-adjust">
-        <div class="mdc-banner" role="banner">
-            <div class="mdc-banner__content"
-                 role="alertdialog"
-                 aria-live="assertive">
-              <div class="mdc-banner__graphic-text-wrapper">
-                <div class="mdc-banner__text">
-                  There was a problem processing a transaction on your credit card.
-                </div>
-              </div>
-              <div class="mdc-banner__actions">
-                <button type="button" class="mdc-button mdc-banner__secondary-action">
-                  <div class="mdc-button__ripple"></div>
-                  <div class="mdc-button__label">Learn more</div>
-                </button>
-                <button type="button" class="mdc-button mdc-banner__primary-action">
-                  <div class="mdc-button__ripple"></div>
-                  <div class="mdc-button__label">Fix it</div>
-                </button>
-              </div>
-            </div>
-          </div>
-
           <button class="mdc-fab mdc-fab--extended"  onClick="askPermission()" id="pushRequest" style="display: none;">
             <div class="mdc-fab__ripple"></div>
             <span class="material-icons mdc-fab__icon">add_alert</span>
             <span class="mdc-fab__label">Receive Notificatins</span>
           </button>
           <!-- Code Copy Popup Start-->
-          <div class="mdc-dialog">
+          <div class="mdc-dialog" id="code_doalog_id">
             <div class="mdc-dialog__container">
               <div class="mdc-dialog__surface"
                 role="alertdialog"
                 aria-modal="true"
-                aria-labelledby="my-dialog-title"
                 aria-describedby="my-dialog-content">
                 <div class="mdc-dialog__content" id="my-dialog-content">
                   Copy Notification Token
@@ -91,6 +68,45 @@
             <div class="mdc-dialog__scrim"></div>
           </div>
           <!-- code copy popup end-->
+
+
+           <!-- Notification Popup Start-->
+           <div class="mdc-dialog" id="notifiction_dialog_id">
+            <div class="mdc-dialog__container">
+              <div class="mdc-dialog__surface"
+                role="alertdialog"
+                aria-modal="true"
+                aria-describedby="dialog-title">
+                <h2 class="mdc-dialog__title" id="dialog-title">Notification Received</h2>
+                <div class="mdc-dialog__content" >
+                  <div id="notification_body">Notification Body</div>
+                  <div  id="image_container">
+                    <img class="mdc-image-list__image" src="#" id="notification_image">
+                  </div>
+                  Custom Data Payload
+                  <textArea id="notifcation_data_text" readonly>
+                  </textarea>
+                </div>
+                <div class="mdc-dialog__actions" >
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="like" id="notification_action_like">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Like 👍</span>
+                  </button>
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="dislike" id="notification_action_dislike">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Dislike 👎</span>
+                  </button>
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="dismiss">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Dismiss</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mdc-dialog__scrim"></div>
+          </div>
+
+           <!-- Notification Popup End -->
 
           <!-- body -->
           <br/>
@@ -119,9 +135,10 @@
               </button>
               <bell-component class="center"></bell-component>
               </div>  
+          
           <aside class="mdc-snackbar">
             <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
-              <div class="mdc-snackbar__label" aria-atomic="false">
+              <div class="mdc-snackbar__label" aria-atomic="false" id="snackbar_text_id">
                 Can't send photo. Retry in 5 seconds.
               </div>
               <div class="mdc-snackbar__actions" aria-atomic="true">
@@ -144,72 +161,62 @@
 <script src="/bell-component.js"></script>
 <script>
 const MDCBanner = mdc.banner.MDCBanner;
-const banner = new MDCBanner(document.querySelector('.mdc-banner'));
-const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
+//const banner = new MDCBanner(document.querySelector('.mdc-banner'));
+const dialogCode = new mdc.dialog.MDCDialog(document.getElementById('code_doalog_id'));
+
+const dialogNotify = new mdc.dialog.MDCDialog(document.getElementById('notifiction_dialog_id'));
 
 
+const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
 
 
-//banner.open()
-window.addEventListener('load', () => {
-    
+//Dialog message box
+function openNotificationDialog(message){
+  console.log('Notifcation Message:',message);
 
-    if(Notification.permission != "granted"){
-        document.getElementById("pushRequest").style.display = "";
-    }else{
-        requestPermission().then(data => {
-            document.getElementById("notficationCode").value = data;
-            document.getElementById("allowed_alert").style.display = "";
-        });
-        
-    }
-});
-
-
-
-function sendNotfication(type, timeout){
-
-  let data = {token:  document.getElementById("notficationCode").value ,type:type,delay:timeout};
-  fetch("https://firebasepushtest.azurewebsites.net/", {
-    method: "POST",
-    headers: {'Content-Type': 'application/json'}, 
-    body: JSON.stringify(data)
-  }).then(res => {
-    console.log("Request complete!, response:", res);
-  });
+  document.getElementById('dialog-title').innerHTML = message.title;
+  document.getElementById('notification_body').innerHTML = message.body;
+  
+  
+  const imgBox = document.getElementById('notification_image');
+  imgBox.style.display = 'none';
+  imgBox.src = '';
+  
+  if(message.image && message.image.length > 1){
+    imgBox.src = message.image;
+    imgBox.style.display = '';
+    document.getElementById('image_container').style.class="mdc-image-list__image-aspect-container";
+  }
+  const notData = document.getElementById('notifcation_data_text');
+  notData.style.display = 'none';
+  notData.style.class="";
+  if(message.data){
+    document.getElementById('notifcation_data_text').value =    JSON.stringify(message.data);
+    notData.style.display = ''
+  }
+  const like = document.getElementById('notification_action_like');
+  const dislike = document.getElementById('notification_action_dislike');
+  like.style.display = 'none';
+  dislike.style.display = 'none';
+  if(message.actions && message.actions.length > 0){
+    like.style.display = '';
+    dislike.style.display = '';
+  }
+ dialogNotify.open();
 }
 
-
-dialog.listen('MDCDialog:closed', (event) => {
+dialogNotify.listen('MDCDialog:closed', (event) => {
   const action = event.detail.action;
-  if (action === 'copy') {
-    // Handle delete action
-    navigator.clipboard.writeText(document.getElementById("notficationCode").value )
+  if (action === 'like') {
+    showSnackBar("You have liked 👍 the Notfication ");
     
-  } else if (action === 'cancel') {
-    // Handle cancel action
+  } else if (action === 'dislike') {
+    showSnackBar("You have disliked 👎 the Notfication ");
+  }else if (action === 'dismiss') {
+    showSnackBar("You have dismissed the Notification");
   }
 });
 
-function openShareBox(){
-
-    dialog.open()
-}
-
-
-function askPermission(){
-    requestPermission().then(data => {
-            if(data){
-                document.getElementById("pushRequest").style.display = "none";
-                document.getElementById("notficationCode").value = data;
-                document.getElementById("allowed_alert").style.display = "";
-                
-            }else{
-                alert('Access Denied');
-            }
-      
-        });
-}
 
 </script>
 </html>
