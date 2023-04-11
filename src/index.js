@@ -68,15 +68,13 @@ window.addEventListener('load', () => {
   }
   
 navigator.serviceWorker.onmessage=function(event){
-  if(event.action){
-    processEvent(event.action);
-    return;
+  
+  if(event.data.clicked_action){
+    processEvent(event.data.clicked_action);
+  }else{
+    document.querySelector('bell-component').ringBell();
+    setTimeout(function () {openNotificationDialog(event.data)}, 1200);
   }
-   document.querySelector('bell-component').ringBell();
-   setTimeout(function () {
-    openNotificationDialog(event.data)
-  }, 1200);
-    
 }
 
 export default async function requestPermission() {
