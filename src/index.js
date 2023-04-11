@@ -75,7 +75,6 @@ navigator.serviceWorker.onmessage=function(event){
     
 }
 
-
 export default async function requestPermission() {
     console.log('Requesting permission...');
     return Notification.requestPermission().then( (permission) => {
@@ -104,7 +103,6 @@ function openShareBox(){
 }
 window.openShareBox=openShareBox;
 
-
 function askPermission(){
   requestPermission().then(data => {
           if(data){
@@ -126,7 +124,6 @@ dialogCode.listen('MDCDialog:closed', (event) => {
     // Handle delete action
     navigator.clipboard.writeText(document.getElementById("notficationCode").value )
     showSnackBar("Token Copied to clipboard");
-    
   } else if (action === 'cancel') {
     // Handle cancel action
   }

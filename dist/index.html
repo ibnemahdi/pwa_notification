@@ -172,11 +172,10 @@ const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snack
 
 //Dialog message box
 function openNotificationDialog(message){
+  alert(message.click_action);
   console.log('Notifcation Message:',message);
-
   document.getElementById('dialog-title').innerHTML = message.title;
   document.getElementById('notification_body').innerHTML = message.body;
-  
   
   const imgBox = document.getElementById('notification_image');
   imgBox.style.display = 'none';
@@ -204,6 +203,7 @@ function openNotificationDialog(message){
   }
  dialogNotify.open();
 }
+
 
 dialogNotify.listen('MDCDialog:closed', (event) => {
   const action = event.detail.action;
