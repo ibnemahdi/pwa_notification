@@ -223,6 +223,6 @@ window.processEvent = processEvent;
 function openHelpDialog(){
   helpCode.open();
 }
-openHelpDialog.openHelpDialog = openHelpDialog;
+window.openHelpDialog = openHelpDialog;
 
 
