@@ -62,36 +62,6 @@
             <div class="mdc-dialog__scrim"></div>
           </div>
           <!-- code copy popup end-->
-          <div class="mdc-dialog" id="help_doalog_id">
-            <div class="mdc-dialog__container">
-              <div class="mdc-dialog__surface"
-                role="alertdialog"
-                aria-modal="true"
-                aria-describedby="my-dialog-content">
-                <div class="mdc-dialog__content" id="my-dialog-content">
-                  Help
-                  There are three scenarios for notifications:
-                  <ol>
-                      <li>When the app is open and a notification is sent, it will be displayed within the app.</li>
-                      <li>When the app is in the background (not closed) and a notification is sent, it will be displayed in the notification bar. When the user clicks on the notification action buttons, the action will be passed to the app and displayed as a snackbar. If the user only clicks on the notification, the notification will be passed to the instance of the app that is open.</li>
-                      <li>When the app is closed and a notification is sent, the app is opned and same behavior as scenario 2 will be executed, but the notification object will be passed through a different channel.
-                      </li>
-                      
-                    </ol> 
-                    To test scenarios 2 and 3, select the 5-second option and either close the app or open another app to move the app to the background.
-                </div>
-                <div class="mdc-dialog__actions">
-                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label">Dismiss</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="mdc-dialog__scrim"></div>
-          </div>
-
-
            <!-- Notification Popup Start-->
            <div class="mdc-dialog" id="notifiction_dialog_id">
             <div class="mdc-dialog__container">
@@ -133,6 +103,34 @@
            <!-- Notification Popup End -->
 
            <!-- Help Popup start -->
+
+           <div class="mdc-dialog" id="help_doalog_id">
+            <div class="mdc-dialog__container">
+              <div class="mdc-dialog__surface"
+                role="alertdialog"
+                aria-modal="true"
+                aria-describedby="my-dialog-content">
+                <div class="mdc-dialog__content" id="my-dialog-content">
+                  There are three scenarios for notifications:
+                  <ol>
+                      <li>When the app is open and a notification is sent, it will be displayed within the app.</li>
+                      <li>When the app is in the background (not closed) and a notification is sent, it will be displayed in the notification bar. When the user clicks on the notification action buttons, the action will be passed to the app and displayed as a snackbar. If the user only clicks on the notification, the notification will be passed to the instance of the app that is open.</li>
+                      <li>When the app is closed and a notification is sent, the app is opned and same behavior as scenario 2 will be executed, but the notification object will be passed through a different channel.
+                      </li>
+                      
+                    </ol> 
+                    To test scenarios 2 and 3, select the 5-second option and either close the app or open another app to move the app to the background.
+                </div>
+                <div class="mdc-dialog__actions">
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Dismiss</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mdc-dialog__scrim"></div>
+          </div>
            <!-- Help Popup End -->
 
           <!-- body -->
