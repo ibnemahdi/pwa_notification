@@ -69,7 +69,8 @@ window.addEventListener('load', () => {
   
 navigator.serviceWorker.onmessage=function(event){
   
-  if(event.data.clicked_action){
+  if(event.data?.clicked_action){
+    console.log("LATEST EVENT v9:",event);
     processEvent(event.data.clicked_action);
   }else{
     document.querySelector('bell-component').ringBell();
