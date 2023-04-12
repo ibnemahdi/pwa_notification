@@ -2,6 +2,12 @@ import {initializeApp} from 'firebase/app';
 import {getMessaging,getToken} from 'firebase/messaging'
 
 
+const MDCBanner = mdc.banner.MDCBanner;
+const dialogCode = new mdc.dialog.MDCDialog(document.getElementById('code_doalog_id'));
+const helpCode = new mdc.dialog.MDCDialog(document.getElementById('help_doalog_id'));
+const dialogNotify = new mdc.dialog.MDCDialog(document.getElementById('notifiction_dialog_id'));
+const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
+
 const firebaseApp = initializeApp(
     {
         apiKey: "AIzaSyD_KnWAbiVpJ5FMfQJcrJsNK90SmIitPNA",
@@ -42,8 +48,7 @@ window.addEventListener('load', () => {
         }else{
               openNotificationDialog(message);
         }
-
-
+        window.history.pushState({}, document.title, "/" + "");
     }
     //Notification Access
     if(Notification.permission != "granted"){
@@ -156,3 +161,68 @@ function showSnackBar(text){
 }
 
 window.showSnackBar=showSnackBar;
+
+
+
+
+//Dialog message box
+function openNotificationDialog(message){
+  console.log('Notification Message:',message);
+  document.getElementById('dialog-title').innerHTML = message.title;
+  document.getElementById('notification_body').innerHTML = message.body;
+  
+  const imgBox = document.getElementById('notification_image');
+  imgBox.style.display = 'none';
+  imgBox.src = '';
+  
+  if(message.image && message.image.length > 1){
+    imgBox.src = message.image;
+    imgBox.style.display = '';
+    document.getElementById('image_container').style.class="mdc-image-list__image-aspect-container";
+  }
+  const notData = document.getElementById('notifcation_data_container');
+  notData.style.display = 'none';
+  notData.style.class="";
+  if(message.data){
+    document.getElementById('notifcation_data_text').value =    JSON.stringify(message.data);
+    notData.style.display = ''
+  }
+  const like = document.getElementById('notification_action_like');
+  const dislike = document.getElementById('notification_action_dislike');
+  like.style.display = 'none';
+  dislike.style.display = 'none';
+  if(message.actions && message.actions.length > 0){
+    like.style.display = '';
+    dislike.style.display = '';
+  }
+ dialogNotify.open();
+}
+
+window.openNotificationDialog = openNotificationDialog;
+
+dialogNotify.listen('MDCDialog:closed', (event) => {
+  const action = event.detail.action;
+  processEvent(action);
+});
+
+
+function processEvent(action){
+  if(action == 'like-action'){
+      showSnackBar("You have liked 👍 the Notfication ");
+  }
+  else if(action == 'dislike-action'){
+    showSnackBar("You have disliked 👎 the Notfication ");
+  }
+  else if (action === 'dismiss') {
+    showSnackBar("You have dismissed the Notification");
+  }
+}
+
+window.processEvent = processEvent;
+
+function openHelpDialog(){
+  helpCode.open();
+}
+openHelpDialog.openHelpDialog = openHelpDialog;
+
+
