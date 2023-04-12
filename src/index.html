@@ -212,14 +212,6 @@ function openNotificationDialog(message){
 
 dialogNotify.listen('MDCDialog:closed', (event) => {
   const action = event.detail.action;
-  /*
-  if (action === 'like') {
-    showSnackBar("You have liked 👍 the Notfication ");
-  } else if (action === 'dislike') {
-    showSnackBar("You have disliked 👎 the Notfication ");
-  }else if (action === 'dismiss') {
-    showSnackBar("You have dismissed the Notification");
-  }*/
   processEvent(action);
 });
 

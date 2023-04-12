@@ -31,9 +31,14 @@ self.addEventListener('notificationclick', (event) => {
         title:event.notification.title,
         body:event.notification.body,
         clicked_action:event.action,
-        image:event.notification.image
-    };
-    console.log(event);
+        image:event.notification.image,
+      };
+    if(event.data?.clicked_action){
+      click_event_msg = {
+          ...click_event_msg,
+          clicked_action:event.data?.clicked_action
+      }
+    }
     const rootUrlWithParameters = `${rootUrl}?msg_payload=${JSON.stringify(click_event_msg)}`;
 
     event.waitUntil(

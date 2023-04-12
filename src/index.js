@@ -36,7 +36,12 @@ window.addEventListener('load', () => {
     registerSW();
     const payload = getJsonFromUrl();
     if(payload){
-        openNotificationDialog(JSON.parse(JSON.parse(payload).msg_payload));
+        const message = JSON.parse(JSON.parse(payload).msg_payload);
+        if(message.clicked_action){
+          processEvent(clicked_action);
+        }else{
+              openNotificationDialog(message);
+        }
 
 
     }
@@ -70,7 +75,6 @@ window.addEventListener('load', () => {
 navigator.serviceWorker.onmessage=function(event){
   
   if(event.data?.clicked_action){
-    console.log("LATEST EVENT v9:",event);
     processEvent(event.data.clicked_action);
   }else{
     document.querySelector('bell-component').ringBell();
