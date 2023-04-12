@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
     if(payload){
         const message = JSON.parse(JSON.parse(payload).msg_payload);
         if(message.clicked_action){
-          processEvent(clicked_action);
+          processEvent(message.clicked_action);
         }else{
               openNotificationDialog(message);
         }

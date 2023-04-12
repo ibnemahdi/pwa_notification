@@ -161,23 +161,13 @@
 <script src="/bell-component.js"></script>
 <script>
 const MDCBanner = mdc.banner.MDCBanner;
-//const banner = new MDCBanner(document.querySelector('.mdc-banner'));
 const dialogCode = new mdc.dialog.MDCDialog(document.getElementById('code_doalog_id'));
-
 const dialogNotify = new mdc.dialog.MDCDialog(document.getElementById('notifiction_dialog_id'));
-
-
 const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
 
 
 //Dialog message box
 function openNotificationDialog(message){
-  /*
-  if(message.clicked_action){
-    processEvent(message.clicked_action);
-    return;
-  }*/
-
   console.log('Notification Message:',message);
   document.getElementById('dialog-title').innerHTML = message.title;
   document.getElementById('notification_body').innerHTML = message.body;
