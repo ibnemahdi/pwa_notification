@@ -88,11 +88,11 @@
                   </textarea>
                 </div>
                 <div class="mdc-dialog__actions" >
-                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="like" id="notification_action_like">
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="like-action" id="notification_action_like">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Like 👍</span>
                   </button>
-                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="dislike" id="notification_action_dislike">
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="dislike-action" id="notification_action_dislike">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Dislike 👎</span>
                   </button>
@@ -225,10 +225,10 @@ dialogNotify.listen('MDCDialog:closed', (event) => {
 
 
 function processEvent(action){
-  if(action == 'like'){
+  if(action == 'like-action'){
       showSnackBar("You have liked 👍 the Notfication ");
   }
-  else if(action == 'dislike'){
+  else if(action == 'dislike-action'){
     showSnackBar("You have disliked 👎 the Notfication ");
   }
   else if (action === 'dismiss') {
